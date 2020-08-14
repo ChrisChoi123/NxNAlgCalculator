@@ -1,29 +1,29 @@
 import math
-wings = 12
-centres = 9.75
+
+WINGS, CENTRES = 12, 9.75
+
+def make_func(odd_centers: float, even_centers: "function", v1: float, v2: float) -> "function":
+    """ Makes a function which calculates the number of algs. """
+    def f(n: int) -> float:
+        """ Actually calculates the number of algs for a NxN. """
+        if n % 2 == 1:
+            val = (n - 3)/2
+            algs = val*(val + 1)*odd_centers + v1
+        else:
+            val = (n - 2)/2
+            algs = val*val*even_centers(n)
+        return val*WINGS + algs + v2
+
+    return f
+
+# chris's arctangent trick for even centers
+even_centers = lambda n: 8 + 3.5*math.atan(0.87566*n - 4)/math.pi
+chris_func = make_func(CENTRES, even_centers, 6.18, 4.12)
+tom_func = make_func(10.5, lambda n: 9, 6, 4)
+
 print("Press any letter and enter to exit the program")
-def changeCen(i):
-    centres = i
-def changeWin(i):
-    wings = i
-def func(n):
-    if (n%2 == 1):
-        val = (n-3)/2
-        algs = val*wings+(val*(val+1))*centres+4.12+6.18
-        return(algs)
-    else:
-        val = (n-2)/2
-        algs = val*wings+(val*val)*((16+2*3.5/math.pi*math.atan(.87566*n-4)))/2+4.12
-        return(algs)
-def Tomfunc(n):
-    if (n%2 == 1):
-        algs = ((((n-3)/2)*24)+(((((n-2)*(n-2))-1)*6)*.875)+(8)+(12))/2
-    else:
-        algs = ((((n-2)/2)*24)+((((n-2)*(n-2))*6)*.75)+(8))/2
-    return(algs)
 while True:
-    num = input("Enter a puzzle layer amount: ")
-    print("Tom's formula: ")
-    print(Tomfunc(float(num)))
-    print("Chris's formula: ")
-    print(func(float(num)))
+    num = float(input("Enter a puzzle layer amount: "))
+    print(f"  Tom's formula: {tom_func(num)}")
+    print(f"Chris's formula: {chris_func(num)} ")
+
