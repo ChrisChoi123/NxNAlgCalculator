@@ -1,6 +1,6 @@
 import math
 
-WINGS, CENTRES = 12, 9.75
+WINGS, CENTRES = 12, 9.7
 
 def make_func(odd_centers: float, even_centers: "function", v1: float, v2: float) -> "function":
     """ Makes a function which calculates the number of algs. """
@@ -17,7 +17,7 @@ def make_func(odd_centers: float, even_centers: "function", v1: float, v2: float
     return f
 
 # chris's arctangent trick for even centers
-even_centers = lambda n: 8 + 3.5*math.atan(0.87566*n - 4)/math.pi
+even_centers = lambda n: (19.75*n - 51.5727)/(2*(n - 2.2324)) #8 + 3.5*math.atan(0.87566*n - 4)/math.pi
 chris_func = make_func(CENTRES, even_centers, 6.18, 4.12)
 tom_func = make_func(10.5, lambda n: 9, 6, 4)
 
@@ -26,4 +26,3 @@ while True:
     num = float(input("Enter a puzzle layer amount: "))
     print(f"  Tom's formula: {tom_func(num)}")
     print(f"Chris's formula: {chris_func(num)} ")
-
