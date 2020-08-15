@@ -4,9 +4,9 @@ This program calculates the amount of algs (3-style comms) in the average NxN bl
 Thanks Graham Siggins for much of the information. This calculation was done assuming fixed buffer 3-style. For the corners and midges, I accounted for floating 2-twist and 2-flip. With these assumptions, Stanley Chapel arrived at 10.3 for the average alg count of a 3x3 solve. I also assumed the implemetation of the advanced "avoiding cycle breaks" during centres. For odd NxNs, the calculation was rather straightforward, but for even NxNs, I had to take account to the fact that you can orient it in an advantageous way due to lack of centre pieces. I did this using a modified inverse tangent function, which has the desired properties of an asymptote at infinity and a steep initial ascent.
 I use 2 formulas, one for even and one for odd, where n is the number of layers.  
 
-Odd: ((n-3)/2)*12+((n-3)/2)((n-3)/2+1)*9.75+4.12+6.18
+Odd: ((n-3)/2)*12+((n-3)/2)((n-3)/2+1)*9.7+4.12+6.18
 
-Even: ((n-2)/2)*12+(((n-2)/2)^2)*(16+(2*3.5/pi)arctan(.87566n - 4))/2 + 4.12
+Even: ((n-2)/2)*12+(((n-2)/2)^2)*(19.75n - 51.5727)/(2(n - 2.2324)) + 4.12
 
 Some other info that no one will bother reading: 
 
