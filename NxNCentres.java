@@ -44,7 +44,9 @@ public class NxNCentres {
     boolean isSolved = false;
     int solved = 0;
     while (!isSolved) {
+      solved = 0;
       next = centres[0];
+
       if (next == 0) {
        index = 1;
        while (centres[index] == colours[index]) {
@@ -129,15 +131,18 @@ public class NxNCentres {
         }
         else next++;
       }
-      if (next == 6) isSolved = true;
       for (int i = 0;i < 24;i++) {
         if (colours[i] == centres[i]) {
           solved++;
         }
       }
-      if (solved == 24) isSolved = true;
+      if (solved == 24 || solved == 23) isSolved = true;
     }
     return targets;
+  }
+
+  public static void optimalOrientation(int[][] cube) {
+    
   }
 
   public static void main(String[] args){
