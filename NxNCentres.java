@@ -142,16 +142,20 @@ public class NxNCentres {
   }
 
   public static void optimalOrientation(int[][] cube) {
-    
+
   }
 
   public static void main(String[] args){
-    int[][] cube = createCube(5);
+    int[][] cube = createCube(101);
+    double average = 0;
     int targets = 0;
-    toString(cube);
+    //toString(cube);
     for (int i = 0; i < cube.length;i++) {
       targets = solveCentres(cube[i]);
-      System.out.println(targets);
+      //System.out.println(targets);
+      average+= targets;
     }
+
+    System.out.println(average/(double)cube.length);
   }
 }
