@@ -4,7 +4,6 @@ import java.util.*;
 0 is U, 1 is L, 2 is F, 3 is R, 4 is B, 5 is D
 */
 public class NxNCentres {
-  public static int[] colours = new int[] {0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5}; //a solved cube
   public static int[][] orientations = new int[][]
   {
     {0, 1, 2, 3, 4, 5} , {1, 5, 2, 0, 4, 3} , {5, 3, 2, 1, 4, 0} , {3, 0, 2, 5, 4, 1} ,
@@ -15,26 +14,18 @@ public class NxNCentres {
     {2, 1, 5, 3, 0, 4} , {1, 4, 5, 2, 0, 3} , {4, 3, 5, 1, 0, 2} , {3, 2, 5, 4, 0, 1} // this covers all of the valid orientations
    };
   public static Random rand = new Random();
-  public static int[][] createCube(float n) {
+  public static void createCube(int[][] cube) {
     int index = 0;
-    int[][] cube;
-    if (n%2 != 0) {
-      cube = new int[(int)Math.round(((n-3)/2)*((n-3)/2+1))][24]; //The expression in the 2nd bracket is the amount of centre orbits
-    }
-    else {
-      cube = new int[(int)Math.round(((n-2)/2)*((n-2)/2))][24];
-    }
     ArrayList<Integer> tempCol = new ArrayList<Integer>();
     for (int i = 0;i < cube.length;i++) {
       for (int j = 0; j < 24;j++) {
-        tempCol.add(colours[j]);
+        tempCol.add(orientations[0][j/4]);
       }
       index = 0;
       while (tempCol.size() > 0) {
         cube[i][index++] = tempCol.remove(rand.nextInt(tempCol.size()));
       }
     }
-    return cube;
   }
   public static void toString(int[][] cube) {
     for (int i = 0;i < cube.length;i++) {
@@ -54,10 +45,9 @@ public class NxNCentres {
     while (!isSolved) {
       solved = 0;
       next = centres[0];
-      System.out.println("I made it");
-      if (next == 0) {
+      if (next == orientations[idx][0]) {
        index = 1;
-       while (centres[index] == colours[orientations[idx][index/4]]) {
+       while (centres[index] == orientations[idx][index/4]) {
          index++;
          if (index == 24) break;
        }
@@ -67,11 +57,11 @@ public class NxNCentres {
          centres[0] = placeholder;
          targets++;
        }
-       else next++;
+       else next = orientations[idx][1];
       }
-      if (next == 1) {
+      if (next == orientations[idx][1]) {
         index = 4;
-        while (centres[index] == colours[orientations[idx][index/4]] && !(centres[index] == 0 && centres[1] == 0 && centres[2] == 0 && centres[3] == 0)) {
+        while (centres[index] == orientations[idx][index/4] && !(centres[index] == 0 && centres[1] == 0 && centres[2] == 0 && centres[3] == 0)) {
           index++;
           if (index == 24) break;
         }
@@ -81,11 +71,11 @@ public class NxNCentres {
           centres[0] = placeholder;
           targets++;
         }
-        else next++;
+        else next = orientations[idx][2];
       }
-      if (next == 2) {
+      if (next == orientations[idx][2]) {
         index = 8;
-        while (centres[index] == colours[orientations[idx][index/4]] && !(centres[index] == 0 && centres[1] == 0 && centres[2] == 0 && centres[3] == 0)) {
+        while (centres[index] == orientations[idx][index/4] && !(centres[index] == 0 && centres[1] == 0 && centres[2] == 0 && centres[3] == 0)) {
           index++;
           if (index == 24) break;
         }
@@ -95,11 +85,11 @@ public class NxNCentres {
           centres[0] = placeholder;
           targets++;
         }
-        else next++;
+        else next = orientations[idx][3];
       }
-      if (next == 3) {
+      if (next == orientations[idx][3]) {
         index = 12;
-        while (centres[index] == colours[orientations[idx][index/4]] && !(centres[index] == 0 && centres[1] == 0 && centres[2] == 0 && centres[3] == 0)) {
+        while (centres[index] == orientations[idx][index/4] && !(centres[index] == 0 && centres[1] == 0 && centres[2] == 0 && centres[3] == 0)) {
           index++;
           if (index == 24) break;
         }
@@ -109,11 +99,11 @@ public class NxNCentres {
           centres[0] = placeholder;
           targets++;
         }
-        else next++;
+        else next = orientations[idx][4];
       }
-      if (next == 4) {
+      if (next == orientations[idx][4]) {
         index = 16;
-        while (centres[index] == colours[orientations[idx][index/4]] && !(centres[index] == 0 && centres[1] == 0 && centres[2] == 0 && centres[3] == 0)) {
+        while (centres[index] == orientations[idx][index/4] && !(centres[index] == 0 && centres[1] == 0 && centres[2] == 0 && centres[3] == 0)) {
           index++;
           if (index == 24) break;
         }
@@ -123,11 +113,11 @@ public class NxNCentres {
           centres[0] = placeholder;
           targets++;
         }
-        else next++;
+        else next = orientations[idx][5];
       }
-      if (next == 5) {
+      if (next == orientations[idx][5]) {
         index = 20;
-        while (centres[index] == colours[orientations[idx][index/4]] && !(centres[index] == 0 && centres[1] == 0 && centres[2] == 0 && centres[3] == 0)) {
+        while (centres[index] == orientations[idx][index/4] && !(centres[index] == 0 && centres[1] == 0 && centres[2] == 0 && centres[3] == 0)) {
           index++;
           if (index == 24) break;
         }
@@ -137,10 +127,10 @@ public class NxNCentres {
           centres[0] = placeholder;
           targets++;
         }
-        else next++;
+        else next = 6;
       }
       for (int i = 0;i < 24;i++) {
-        if (colours[orientations[idx][i/4]] == centres[i]) {
+        if (orientations[idx][i/4] == centres[i]) {
           solved++;
         }
       }
@@ -154,7 +144,7 @@ public class NxNCentres {
     for (int i = 0;i < 24;i++) {
       for (int j = 0;j < cube.length;j++) {
         for (int k = 0;k < 24;k++) {
-          if (cube[j][k] == colours[orientations[i][k/4]]) {
+          if (cube[j][k] == orientations[i][k/4]) {
             solved[i]+=1;
           }
         }
@@ -174,22 +164,31 @@ public class NxNCentres {
     int n;
     Scanner scanner = new Scanner(System.in);
     System.out.println("You may enter 0 to exit this program\nPlease enter in an NxN layer amount larger than 3: ");
-
     while((n = scanner.nextInt()) != 0) {
-        System.out.println("Another one: ");
-        int[][] cube = createCube(n);
-        int idx = 0;
-        //if (n%2 == 0) idx = optimalOrientation(cube);
-        double average = 0;
-        int targets = 0;
-        //toString(cube);
-        for (int i = 0; i < cube.length;i++) {
-          targets = solveCentres(cube[i],idx);
-          //System.out.println(targets);
-          average+= targets;
-          System.out.println("I made it");
+        double mean = 0;
+        int[][] cube;
+        int orbits = 0;
+        if (n%2 != 0) {
+          orbits = (int)Math.round(((n-3)/2)*((n-3)/2+1));
         }
-        System.out.println(average/(double)cube.length);
+        else {
+          orbits = (int)Math.round(((n-2)/2)*((n-2)/2));
+        }
+        cube = new int[orbits][24];
+        for (int i = 0;i < Math.ceil(10000/orbits);i++){
+          createCube(cube);
+          int idx = 0;
+          if (n%2 == 0) idx = optimalOrientation(cube);
+          double average = 0;
+          int targets = 0;
+          for (int j = 0; j < cube.length;j++) {
+            targets = solveCentres(cube[j],idx);
+            average += targets;
+          }
+          mean += (average/(double)cube.length);
+        }
+        System.out.println("Number of Targets: "+ mean/(double)(Math.ceil(10000/orbits)));
+        System.out.println("Try another one: ");
     }
     {
         System.exit(1);
