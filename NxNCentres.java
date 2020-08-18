@@ -175,7 +175,7 @@ public class NxNCentres {
           orbits = (int)Math.round(((n-2)/2)*((n-2)/2));
         }
         cube = new int[orbits][24];
-        for (int i = 0;i < Math.ceil(10000/orbits);i++){
+        for (int i = 0;i < Math.ceil(100000/orbits);i++){
           createCube(cube);
           int idx = 0;
           if (n%2 == 0) idx = optimalOrientation(cube);
@@ -187,7 +187,7 @@ public class NxNCentres {
           }
           mean += (average/(double)cube.length);
         }
-        System.out.println("Number of Targets: "+ mean/(double)(Math.ceil(10000/orbits)));
+        System.out.println("Number of Targets: "+ mean/(double)(Math.ceil(100000/orbits)));
         System.out.println("Try another one: ");
     }
     {
