@@ -1,7 +1,7 @@
 # NxNAlgCalulator
-This program calculates the amount of algs (3-style comms) in the average NxN blind solve. It shows both my (Chris Choi) formula and Tom Nelson's formula from 2017.
+This program has two files that perform different things: one calculates the amount of algorithms (algs) in the average NxN blindfolded solve and the other calculates the average target count for all the centres of any NxN cube larger than 3x3. 
 
-Thanks Graham Siggins for much of the information. This calculation was done assuming fixed buffer 3-style. For the corners and midges, I accounted for floating 2-twist and 2-flip. With these assumptions, Stanley Chapel arrived at 10.3 for the average alg count of a 3x3 solve. I also assumed the implementation of the advanced "avoiding cycle breaks" during centres. For odd NxNs, the calculation was rather straightforward, but for even NxNs, I had to take into account the fact that you can orient it in an advantageous way due to lack of centre pieces. I did this using a modified inverse tangent function, which has the desired properties of an asymptote at infinity and a steep initial ascent.
+This calculation was done assuming fixed buffer 3-style. For the corners and midges, I accounted for floating 2-twist and 2-flip. With these assumptions, Stanley Chapel arrived at 10.3 for the average alg count of a 3x3 solve. I also assumed the implementation of the advanced "avoiding cycle breaks" during centres (explained later in the README). For odd NxNs, the calculation was rather straightforward, but for even NxNs, I had to take into account the fact that you can orient it in an advantageous way due to lack of centre pieces. I found that a linear rational function is the best model for the behaviour of the even centres, which has an asymptote at infinity and a steep initial ascent.
 I use 2 formulas, one for even and one for odd, where n is the number of layers.  
 
 Odd: ((n-3)/2)12+((n-3)/2)((n-3)/2+1)9.5854+4.12+6.18
@@ -37,20 +37,20 @@ Then, I had to incorporate the fact that on even layer NxNs there are no fixed c
 I wrote a function that was able to check every orientation of the puzzle, using some cleverly defined loops, and I was eventually able to fully incorporate this aspect into my code. The final thing left to do was the implement an efficient way to test the simulations. I ended up going with a user input type of thing where the user inputted a NxN layer number and out spat 100,000 trials. However, this was smart because it took into account how many centre types, or orbits, the NxN had and adjusted the amount of trials of the entire puzzle so that  the amount of centre orbits being tested was 100,000. So for example, 4x4 has a single orbit, of x-centres, so it would get tested (aka rescrambled) 100,000 times. 7x7 has 6 sets so it would only get tested 100,000/6 or 16,667 times. The testing procedure takes averages of the trials and outputs an average.
 
 So, what are the results? Well, they're pretty surprising and not surprising at the same time. For one, they are significantly less than the estimates Graham and Levi gave. For the odd-layered NxNs, the centre average count was overall pretty consistent, at 19.171 targets per centre orbit. Significantly lower than Graham's 19.5. For even layered NxNs, they were less than what Levi proposed but still approached roughly the same limit: 19.177. More specifically, Levi's estimates were:
-4x4: 16.1
-6x6: 18.1
-8x8: 18.8
-10x10: 19.1
-12x12: 19.3
-14x14: 19.4
-20x20: 19.6
-
-while mine were:
-4x4: 15.415
-6x6: 17.366
-8x8: 17.984
-10x10: 18.282
-12x12: 18.465
-14x14: 18.589
-20x20: 18.785
+4x4: 16.1<br>
+6x6: 18.1<br>
+8x8: 18.8<br>
+10x10: 19.1<br>
+12x12: 19.3<br>
+14x14: 19.4<br>
+20x20: 19.6<br>
+<br>
+while mine were:<br>
+4x4: 15.415<br>
+6x6: 17.366<br>
+8x8: 17.984<br>
+10x10: 18.282<br>
+12x12: 18.465<br>
+14x14: 18.589<br>
+20x20: 18.785<br>
 I adjusted my python code to account for these new and more accurate estimates and my calculations actually became less accurate in general (going from an average of 8.13 times more accurate than Tom's to an average of 3.94). However, I think this is perfectly fine, for a few reasons. First of all, Levi's predictions were most likely not done with avoiding cycle breaks, so it's expected that it's higher than what it should be. 2nd of all, Graham's estimates aren't the end all be all, they are just estimates based on his own experience. His estimates that should be taken more seriously should be his 4x4 and 5x5 estimates, because that's what he does the most. And indeed, my calculations became closer to his estimates after adjusting for my  centre experiments. This is good news for my formulas. I suspect that the calculations for the NxN alg count is probably more reliable and accurate than Graham's estimates, especially as N gets larger.
