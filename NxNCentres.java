@@ -12,7 +12,7 @@ public class NxNCentres {
     {0, 2, 3, 4, 1, 5} , {2, 5, 3, 0, 1, 4} , {5, 4, 3, 2, 1, 0} , {4, 0, 3, 5, 1, 2} ,
     {0, 3, 4, 1, 2, 5} , {3, 5, 4, 0, 2, 1} , {5, 1, 4, 3, 2, 0} , {1, 0, 4, 5, 2, 3} ,
     {2, 1, 5, 3, 0, 4} , {1, 4, 5, 2, 0, 3} , {4, 3, 5, 1, 0, 2} , {3, 2, 5, 4, 0, 1} // this covers all of the valid orientations
-   };
+  };
   public static Random rand = new Random();
   public static void createCube(int[][] cube) {
     int index = 0;
@@ -165,29 +165,33 @@ public class NxNCentres {
     Scanner scanner = new Scanner(System.in);
     System.out.println("You may enter 0 to exit this program\nPlease enter in an NxN layer amount larger than 3: ");
     while((n = scanner.nextInt()) != 0) {
-        double mean = 0;
-        int[][] cube;
-        int orbits = 0;
-        if (n%2 != 0) {
-          orbits = (int)Math.round(((n-3)/2)*((n-3)/2+1));
-        }
-        else {
-          orbits = (int)Math.round(((n-2)/2)*((n-2)/2));
-        }
-        cube = new int[orbits][24];
-        for (int i = 0;i < Math.ceil(100000/orbits);i++){
-          createCube(cube);
-          int idx = 0;
-          if (n%2 == 0) idx = optimalOrientation(cube);
-          double average = 0;
-          int targets = 0;
-          for (int j = 0; j < cube.length;j++) {
-            targets = solveCentres(cube[j],idx);
-            average += targets;
+        double superavg = 0;
+        for (int k = 0; k < 5;k++) {
+          double mean = 0;
+          int[][] cube;
+          int orbits = 0;
+          if (n%2 != 0) {
+            orbits = (int)Math.round(((n-3)/2)*((n-3)/2+1));
           }
-          mean += (average/(double)cube.length);
+          else {
+            orbits = (int)Math.round(((n-2)/2)*((n-2)/2));
+          }
+          cube = new int[orbits][24];
+          for (int i = 0;i < Math.ceil(100000/orbits);i++){
+            createCube(cube);
+            int idx = 0;
+            if (n%2 == 0) idx = optimalOrientation(cube);
+            double average = 0;
+            int targets = 0;
+            for (int j = 0; j < cube.length;j++) {
+              targets = solveCentres(cube[j],idx);
+              average += targets;
+            }
+            mean += (average/(double)cube.length);
+          }
+          superavg += mean/(double)(Math.ceil(100000/orbits));
         }
-        System.out.println("Number of Targets: "+ mean/(double)(Math.ceil(100000/orbits)));
+        System.out.println("Number of Targets: "+ superavg/5);
         System.out.println("Try another one: ");
     }
     {
