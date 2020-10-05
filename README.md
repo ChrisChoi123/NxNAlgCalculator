@@ -59,3 +59,17 @@ while mine were:<br>
 14x14: 18.589<br>
 20x20: 18.785<br>
 I adjusted my python code to account for these new estimates and as a result, my calculations actually became less accurate in general (going from an average of 8.13 times more accurate than Tom's to an average of 3.94). However, I think this is perfectly fine, for a few reasons. First of all, Levi's predictions were most likely not done with avoiding cycle breaks, so it's expected that it's higher than what it should've been. Second of all, Graham's estimates aren't the end all be all; they are just estimates based on his own experience. The estimates that should be taken more seriously are his 4x4 and 5x5 estimates, because that's what he practises and logs the most. And indeed, my calculations became closer to his 4x4 and 5x5 estimates after adjusting for my centre experiments. This is good news for my formulas. I suspect that my formulas are probably more reliable and accurate than Graham's estimates, especially as N gets larger.
+
+#### 10/5/20:
+I explained my algorithm to Graham on youtube and he pointed out how I was mistaken in my undersanding of how cycle avoidance in centres worked and that I forgot to take into account how odd numbered targets for centres yield the same amount of algs as that target count plus 1. So I implemented those two into my code, and my results for the even layered alg counts became much closer to Graham's values, although the values for the odd-layered cubes deviated even more. What's more disappointing is that it seems like even though I completely changed the algorithm for solving centres, the only thing that seems to have an effect is the adding of an extra target for odd numbered target coubnts, which theoretically should add 0.5 if the algorithm is kept the same, because about half of all centre solves will be even and half will be odd, so adding 1 for odd will yield .5 on average, and that's pretty much what I observe in the results. The odd layered centre target counts all seem to be around 19.6649, almost exactly 0.5 greater than the avg for the previous algorithm. The new results for even layered cubes' centres are as follows: 
+4x4: 15.9015
+6x6: 17.8646
+8x8: 18.4822
+10x10: 18.7869
+12x12: 18.9620
+14x14: 19.0831
+16x16: 19.1679
+18x18: 19.2309
+20x20: 19.2786
+I don't know what I did wrong in my algorithm, or what I need to fix to make the odd-layered alg counts more accurate. I will have to continue thinking about this. 
+
