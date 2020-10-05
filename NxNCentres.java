@@ -42,14 +42,23 @@ public class NxNCentres {
     int placeholder = 0;
     boolean isSolved = false;
     int solved = 0;
+    int uIndex = 0;
+    int amountSolvedOnAFace = 0;
     while (!isSolved) {
       solved = 0;
       next = centres[0];
       if (next == orientations[idx][0]) {
        index = 1;
+       amountSolvedOnAFace = 1;
        while (centres[index] == orientations[idx][index/4]) {
+         amountSolvedOnAFace++;
          index++;
-         if (index == 24) break;
+         if (amountSolvedOnAFace == 4) {
+           next = orientations[idx][1];
+           index = 4;
+           break;
+         }
+         else if (index == 24) break;
        }
        if (index < 4) {
          placeholder = centres[index];
@@ -57,13 +66,30 @@ public class NxNCentres {
          centres[0] = placeholder;
          targets++;
        }
-       else next = orientations[idx][1];
+
       }
       if (next == orientations[idx][1]) {
         index = 4;
-        while (centres[index] == orientations[idx][index/4] && !(centres[index] == 0 && centres[1] == 0 && centres[2] == 0 && centres[3] == 0)) {
+        uIndex = 0;
+        amountSolvedOnAFace = 0;
+        while (centres[index] == orientations[idx][index/4] || centres[index] == orientations[idx][0]) {
+          if (centres[index] == orientations[idx][0]) {
+            uIndex = index;
+          }
+          if (centres[index] == orientations[idx][index/4]) {
+            amountSolvedOnAFace++;
+          }
           index++;
-          if (index == 24) break;
+          if (index == 8 && uIndex != 0) {
+            index = uIndex;
+            break;
+          }
+          if (amountSolvedOnAFace == 4) {
+            next = orientations[idx][2];
+            index = 8;
+            break;
+          }
+          else if (index == 24) break;
         }
         if (index < 8) {
           placeholder = centres[index];
@@ -71,13 +97,30 @@ public class NxNCentres {
           centres[0] = placeholder;
           targets++;
         }
-        else next = orientations[idx][2];
+
       }
       if (next == orientations[idx][2]) {
         index = 8;
-        while (centres[index] == orientations[idx][index/4] && !(centres[index] == 0 && centres[1] == 0 && centres[2] == 0 && centres[3] == 0)) {
+        uIndex = 0;
+        amountSolvedOnAFace = 0;
+        while (centres[index] == orientations[idx][index/4] || centres[index] == orientations[idx][0]) {
+          if (centres[index] == orientations[idx][0]) {
+            uIndex = index;
+          }
+          if (centres[index] == orientations[idx][index/4]) {
+            amountSolvedOnAFace++;
+          }
           index++;
-          if (index == 24) break;
+          if (index == 12 && uIndex != 0) {
+            index = uIndex;
+            break;
+          }
+          if (amountSolvedOnAFace == 4) {
+            next = orientations[idx][3];
+            index = 12;
+            break;
+          }
+          else if (index == 24) break;
         }
         if (index < 12) {
           placeholder = centres[index];
@@ -85,13 +128,30 @@ public class NxNCentres {
           centres[0] = placeholder;
           targets++;
         }
-        else next = orientations[idx][3];
+
       }
       if (next == orientations[idx][3]) {
         index = 12;
-        while (centres[index] == orientations[idx][index/4] && !(centres[index] == 0 && centres[1] == 0 && centres[2] == 0 && centres[3] == 0)) {
+        uIndex = 0;
+        amountSolvedOnAFace = 0;
+        while (centres[index] == orientations[idx][index/4] || centres[index] == orientations[idx][0]) {
+          if (centres[index] == orientations[idx][0]) {
+            uIndex = index;
+          }
+          if (centres[index] == orientations[idx][index/4]) {
+            amountSolvedOnAFace++;
+          }
           index++;
-          if (index == 24) break;
+          if (index == 16 && uIndex != 0) {
+            index = uIndex;
+            break;
+          }
+          if (amountSolvedOnAFace == 4) {
+            next = orientations[idx][4];
+            index = 16;
+            break;
+          }
+          else if (index == 24) break;
         }
         if (index < 16) {
           placeholder = centres[index];
@@ -99,13 +159,30 @@ public class NxNCentres {
           centres[0] = placeholder;
           targets++;
         }
-        else next = orientations[idx][4];
+
       }
       if (next == orientations[idx][4]) {
         index = 16;
-        while (centres[index] == orientations[idx][index/4] && !(centres[index] == 0 && centres[1] == 0 && centres[2] == 0 && centres[3] == 0)) {
+        uIndex = 0;
+        amountSolvedOnAFace = 0;
+        while (centres[index] == orientations[idx][index/4] || centres[index] == orientations[idx][0]) {
+          if (centres[index] == orientations[idx][0]) {
+            uIndex = index;
+          }
+          if (centres[index] == orientations[idx][index/4]) {
+            amountSolvedOnAFace++;
+          }
           index++;
-          if (index == 24) break;
+          if (index == 20 && uIndex != 0) {
+            index = uIndex;
+            break;
+          }
+          if (amountSolvedOnAFace == 4) {
+            next = orientations[idx][5];
+            index = 20;
+            break;
+          }
+          else if (index == 24) break;
         }
         if (index < 20) {
           placeholder = centres[index];
@@ -113,13 +190,30 @@ public class NxNCentres {
           centres[0] = placeholder;
           targets++;
         }
-        else next = orientations[idx][5];
+
       }
       if (next == orientations[idx][5]) {
         index = 20;
-        while (centres[index] == orientations[idx][index/4] && !(centres[index] == 0 && centres[1] == 0 && centres[2] == 0 && centres[3] == 0)) {
+        uIndex = 0;
+        amountSolvedOnAFace = 0;
+        while (centres[index] == orientations[idx][index/4] || centres[index] == orientations[idx][0]) {
+          if (centres[index] == orientations[idx][0]) {
+            uIndex = index;
+          }
+          if (centres[index] == orientations[idx][index/4]) {
+            amountSolvedOnAFace++;
+          }
           index++;
-          if (index == 24) break;
+          if (index == 24 && uIndex != 0) {
+            index = uIndex;
+            break;
+          }
+          if (amountSolvedOnAFace == 4) {
+            next = 6;
+            index = 24;
+            break;
+          }
+          else if (index == 24) break;
         }
         if (index < 24) {
           placeholder = centres[index];
@@ -127,7 +221,7 @@ public class NxNCentres {
           centres[0] = placeholder;
           targets++;
         }
-        else next = 6;
+
       }
       for (int i = 0;i < 24;i++) {
         if (orientations[idx][i/4] == centres[i]) {
@@ -135,6 +229,9 @@ public class NxNCentres {
         }
       }
       if (solved > 22) isSolved = true;
+    }
+    if (targets%2 != 0) {
+      targets++;
     }
     return targets;
   }
@@ -176,8 +273,9 @@ public class NxNCentres {
           else {
             orbits = (int)Math.round(((n-2)/2)*((n-2)/2));
           }
+          int amount = 100000/orbits;
           cube = new int[orbits][24];
-          for (int i = 0;i < Math.ceil(100000/orbits);i++){
+          for (int i = 0;i < Math.ceil(amount);i++){
             createCube(cube);
             int idx = 0;
             if (n%2 == 0) idx = optimalOrientation(cube);
@@ -189,7 +287,7 @@ public class NxNCentres {
             }
             mean += (average/(double)cube.length);
           }
-          superavg += mean/(double)(Math.ceil(100000/orbits));
+          superavg += mean/(double)(Math.ceil(amount));
         }
         System.out.println("Number of Targets: "+ superavg/5);
         System.out.println("Try another one: ");

@@ -1,6 +1,6 @@
 import math
 
-WINGS, CENTRES = 12, 9.583575
+WINGS, CENTRES = 12, 9.83285
 
 def make_func(odd_centers: float, even_centers: "function", v1: float, v2: float) -> "function":
     """ Makes a function which calculates the number of algs. """
@@ -17,7 +17,7 @@ def make_func(odd_centers: float, even_centers: "function", v1: float, v2: float
     return f
 
 # chris's arctangent trick for even centers
-even_centers = lambda n: (19.16715*n - 48.3223)/(2*(n - 2.1603))
+even_centers = lambda n: (19.6657*n - 49.5021)/(2*(n - 2.1659))
 chris_func = make_func(CENTRES, even_centers, 6.18, 4.12)
 tom_func = make_func(10.5, lambda n: 9, 6, 4)
 
